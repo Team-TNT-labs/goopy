@@ -1,0 +1,51 @@
+{
+  "" : {
+    "const-values" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.swiftconstvalues",
+    "dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.d",
+    "diagnostics" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.dia",
+    "emit-module-dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary-emit-module.dia",
+    "pch" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.swiftdeps"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/Manager/DateUtils.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DateUtils.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DateUtils.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DateUtils.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/Model/DailyEntry.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DailyEntry.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DailyEntry.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/DailyEntry.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/View/ArchiveView.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ArchiveView.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ArchiveView.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ArchiveView.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/View/CalendarView.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/CalendarView.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/CalendarView.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/CalendarView.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/View/ContentView.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/View/FloatingTabBar.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/FloatingTabBar.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/FloatingTabBar.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/FloatingTabBar.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/View/InputView.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/InputView.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/InputView.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/InputView.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/goopyApp.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopyApp.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopyApp.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopyApp.o"
+  }
+}

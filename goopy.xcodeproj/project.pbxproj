@@ -10,6 +10,15 @@
 		C7711AEE2E9A3E750069F4F9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BA3B9A2E9A31600047B559 /* WidgetKit.framework */; };
 		C7711AEF2E9A3E750069F4F9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BA3B9C2E9A31610047B559 /* SwiftUI.framework */; };
 		C7711AFA2E9A3E760069F4F9 /* goopyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C7711AED2E9A3E750069F4F9 /* goopyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C7A341A32E9AA2070033DA56 /* ClimateCrisisKR-1990.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */; };
+		C7A341A42E9AA2070033DA56 /* KoPubWorld Batang_Pro Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */; };
+		C7A341A52E9AA2070033DA56 /* neurimboGothicRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */; };
+		C7A341A62E9AA2070033DA56 /* Assets/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */; };
+		C7A341C22E9AA24D0033DA56 /* goopy.icon in Resources */ = {isa = PBXBuildFile; fileRef = C7A341C12E9AA24D0033DA56 /* goopy.icon */; };
+		C7CB85C12E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */; };
+		C7CB85C22E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */; };
+		C7CB85C32E9A8BF000AEBF87 /* neurimboGothicRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */; };
+		C7CB85C42E9A8BF000AEBF87 /* Assets/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,35 +47,49 @@
 
 /* Begin PBXFileReference section */
 		C7711AED2E9A3E750069F4F9 /* goopyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = goopyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7711AFF2E9A3EE80069F4F9 /* goopyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = goopyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C7A341C12E9AA24D0033DA56 /* goopy.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = goopy.icon; sourceTree = "<group>"; };
 		C7BA3B9A2E9A31600047B559 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C7BA3B9C2E9A31610047B559 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C7BB23252E98EAB800489C64 /* goopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CB85B12E9A8BF000AEBF87 /* goopy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = goopy.xcodeproj; sourceTree = "<group>"; };
+		C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClimateCrisisKR-1990.otf"; sourceTree = "<group>"; };
+		C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoPubWorld Batang_Pro Medium.otf"; sourceTree = "<group>"; };
+		C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neurimboGothicRegular.otf; sourceTree = "<group>"; };
+		C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C7711AFE2E9A3E760069F4F9 /* Exceptions for "goopyWidget" folder in "goopyWidgetExtension" target */ = {
+		C7711AFE2E9A3E760069F4F9 /* Exceptions for "Sources/Widget/goopyWidget" folder in "goopyWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = C7711AEC2E9A3E750069F4F9 /* goopyWidgetExtension */;
 		};
+		C7BB23512E98EE0A00489C64 /* Exceptions for "Sources/App" folder in "goopy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C7BB23242E98EAB800489C64 /* goopy */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C7711AF02E9A3E750069F4F9 /* goopyWidget */ = {
+		C7711AF02E9A3E750069F4F9 /* Sources/Widget/goopyWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				C7711AFE2E9A3E760069F4F9 /* Exceptions for "goopyWidget" folder in "goopyWidgetExtension" target */,
+				C7711AFE2E9A3E760069F4F9 /* Exceptions for "Sources/Widget/goopyWidget" folder in "goopyWidgetExtension" target */,
 			);
-			path = goopyWidget;
+			path = Sources/Widget/goopyWidget;
 			sourceTree = "<group>";
 		};
-		C7BB23272E98EAB800489C64 /* goopy */ = {
+		C7BB23272E98EAB800489C64 /* Sources/App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = goopy;
+			exceptions = (
+				C7BB23512E98EE0A00489C64 /* Exceptions for "Sources/App" folder in "goopy" target */,
+			);
+			path = Sources/App;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -91,6 +114,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7766AD92E9AA12400FE8116 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		C7BA3B992E9A31600047B559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,22 +130,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7BA3C6C2E9A37970047B559 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		C7BB231C2E98EAB800489C64 = {
 			isa = PBXGroup;
 			children = (
-				C7711AFF2E9A3EE80069F4F9 /* goopyWidgetExtension.entitlements */,
-				C7BB23272E98EAB800489C64 /* goopy */,
-				C7711AF02E9A3E750069F4F9 /* goopyWidget */,
+				C7BB23272E98EAB800489C64 /* Sources/App */,
+				C7711AF02E9A3E750069F4F9 /* Sources/Widget/goopyWidget */,
+				C7CB85BC2E9A8BF000AEBF87 /* Resources */,
 				C7BA3B992E9A31600047B559 /* Frameworks */,
 				C7BB23262E98EAB800489C64 /* Products */,
-				C7BA3C6C2E9A37970047B559 /* Recovered References */,
+				C7766AD92E9AA12400FE8116 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +158,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C7CB85BC2E9A8BF000AEBF87 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */,
+				C7CB85C52E9A8BF000AEBF87 /* Fonts */,
+				C7A341C12E9AA24D0033DA56 /* goopy.icon */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7CB85C52E9A8BF000AEBF87 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */,
+				C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */,
+				C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,7 +194,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C7711AF02E9A3E750069F4F9 /* goopyWidget */,
+				C7711AF02E9A3E750069F4F9 /* Sources/Widget/goopyWidget */,
 			);
 			name = goopyWidgetExtension;
 			packageProductDependencies = (
@@ -175,7 +218,7 @@
 				C7711AF92E9A3E760069F4F9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				C7BB23272E98EAB800489C64 /* goopy */,
+				C7BB23272E98EAB800489C64 /* Sources/App */,
 			);
 			name = goopy;
 			packageProductDependencies = (
@@ -233,6 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB85C12E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf in Resources */,
+				C7CB85C22E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf in Resources */,
+				C7CB85C32E9A8BF000AEBF87 /* neurimboGothicRegular.otf in Resources */,
+				C7CB85C42E9A8BF000AEBF87 /* Assets/Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +287,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A341A32E9AA2070033DA56 /* ClimateCrisisKR-1990.otf in Resources */,
+				C7A341A42E9AA2070033DA56 /* KoPubWorld Batang_Pro Medium.otf in Resources */,
+				C7A341A52E9AA2070033DA56 /* neurimboGothicRegular.otf in Resources */,
+				C7A341C22E9AA24D0033DA56 /* goopy.icon in Resources */,
+				C7A341A62E9AA2070033DA56 /* Assets/Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,12 +328,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = goopyWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/goopyWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RP5GZ99V95;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = goopyWidget/Info.plist;
+				INFOPLIST_FILE = Sources/Widget/goopyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = goopyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
@@ -308,12 +360,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = goopyWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/goopyWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RP5GZ99V95;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = goopyWidget/Info.plist;
+				INFOPLIST_FILE = Sources/Widget/goopyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = goopyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
@@ -461,13 +513,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = goopy;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = goopy/goopy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/goopy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RP5GZ99V95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = goopy/Info.plist;
+				INFOPLIST_FILE = Sources/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -496,13 +548,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = goopy;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = goopy/goopy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/goopy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RP5GZ99V95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = goopy/Info.plist;
+				INFOPLIST_FILE = Sources/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

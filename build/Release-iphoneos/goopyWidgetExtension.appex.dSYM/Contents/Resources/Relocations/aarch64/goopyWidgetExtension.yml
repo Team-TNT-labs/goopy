@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/go/Desktop/00.IOS/goopy/build/Release-iphoneos/goopyWidgetExtension.appex/goopyWidgetExtension'
+relocations:     []
+...

@@ -1,0 +1,21 @@
+{
+  "" : {
+    "const-values" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary.swiftconstvalues",
+    "dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary.d",
+    "diagnostics" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary.dia",
+    "emit-module-dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary-emit-module.dia",
+    "pch" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidgetExtension-primary.swiftdeps"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/Sources/Widget/goopyWidget/goopyWidget.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidget.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidget.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/goopyWidget.o"
+  },
+  "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopyWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

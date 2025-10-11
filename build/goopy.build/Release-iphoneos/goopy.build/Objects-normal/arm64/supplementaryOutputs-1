@@ -1,0 +1,12 @@
+{
+  "/Users/go/Desktop/00.IOS/goopy/Sources/App/Manager/DateUtils.swift" : {
+    "abi-baseline-json" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy.abi.json",
+    "const-values" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.swiftconstvalues",
+    "dependencies" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.d",
+    "diagnostics" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-primary.dia",
+    "objc-header" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy-Swift.h",
+    "swiftdoc" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy.swiftdoc",
+    "swiftmodule" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy.swiftmodule",
+    "swiftsourceinfo" : "/Users/go/Desktop/00.IOS/goopy/build/goopy.build/Release-iphoneos/goopy.build/Objects-normal/arm64/goopy.swiftsourceinfo"
+  }
+}

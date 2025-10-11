@@ -1,0 +1,72 @@
+{
+  "source": "/Users/go/Desktop/00.IOS/goopy/Sources/Widget/goopyWidget/goopyWidget.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 257
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 260
+        }
+      },
+      {
+        "comment": "",
+        "key": "Goopy Diary (텍스트)",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 329
+        }
+      },
+      {
+        "comment": "",
+        "key": "오늘의 일기를 텍스트로 확인하세요.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 330
+        }
+      },
+      {
+        "comment": "",
+        "key": "Goopy Diary (캘린더)",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 343
+        }
+      },
+      {
+        "comment": "",
+        "key": "오늘의 일기와 캘린더를 확인하세요.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "Goopy Diary (날짜만)",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 357
+        }
+      },
+      {
+        "comment": "",
+        "key": "오늘 날짜를 확인하세요.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 358
+        }
+      }
+    ]
+  },
+  "version": 1
+}

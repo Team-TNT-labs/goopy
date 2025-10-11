@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'goopy' in project 'goopy'
+➜ Explicit dependency on target 'goopyWidgetExtension' in project 'goopy'
+Target 'goopyWidgetExtension' in project 'goopy' (no dependencies)
