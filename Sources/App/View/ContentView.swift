@@ -149,17 +149,58 @@ struct ContentView: View {
     }
 
     private func shareEntry() {
-        let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
-        let dateString = DateUtils.formatDate(currentDate)
-        let activityVC = UIActivityViewController(
-            activityItems: ["\(dateString)\n\n\(text)"],
-            applicationActivities: nil
-        )
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first,
-           let root = window.rootViewController {
-            root.present(activityVC, animated: true)
+        // 정사각형 공유 이미지 생성
+        if let shareImage = captureShareView() {
+            let dateString = DateUtils.formatDate(currentDate)
+            let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
+            
+            let activityVC = UIActivityViewController(
+                activityItems: [
+                    "\(dateString)\n\n\(text)",
+                    shareImage
+                ],
+                applicationActivities: nil
+            )
+            
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first,
+               let root = window.rootViewController {
+                root.present(activityVC, animated: true)
+            }
+        } else {
+            // 이미지 생성 실패 시 기존 텍스트 공유
+            let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
+            let dateString = DateUtils.formatDate(currentDate)
+            let activityVC = UIActivityViewController(
+                activityItems: ["\(dateString)\n\n\(text)"],
+                applicationActivities: nil
+            )
+            
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first,
+               let root = window.rootViewController {
+                root.present(activityVC, animated: true)
+            }
         }
+    }
+    
+    private func captureShareView() -> UIImage? {
+        // 공유용 정사각형 뷰 생성
+        let shareView = ShareView(
+            date: currentDate,
+            content: todayEntry?.content ?? "",
+            isDarkMode: isDarkMode
+        )
+        
+        // SwiftUI 뷰를 UIImage로 변환
+        let renderer = ImageRenderer(content: shareView)
+        renderer.scale = UIScreen.main.scale
+        
+        // 정사각형 크기 설정
+        let size = CGSize(width: 400, height: 400)
+        renderer.proposedSize = .init(width: size.width, height: size.height)
+        
+        return renderer.uiImage
     }
 
     private func loadTodayEntry() {
