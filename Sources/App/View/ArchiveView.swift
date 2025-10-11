@@ -14,6 +14,7 @@ struct ArchiveView: View {
     @Query(sort: \DailyEntry.date, order: .reverse) 
     private var allEntries: [DailyEntry]
     @State private var selectedMonth: Date = Date()
+    @State private var calendarMonth: Date = Date()
     let onDateTap: () -> Void
     let onToggleDarkMode: () -> Void
     let onShare: () -> Void
@@ -40,6 +41,7 @@ struct ArchiveView: View {
                     isDarkMode: isDarkMode,
                     onMonthChanged: { month in
                         withAnimation(.easeInOut(duration: 0.3)) {
+                            calendarMonth = month
                             selectedMonth = month
                         }
                     }
@@ -59,7 +61,7 @@ struct ArchiveView: View {
                             // 해당 월에 글이 없을 때
                             VStack(spacing: 16) {
                                 Text("이 달에는 작성된 글이 없습니다")
-                                    .font(.kpubWorld(size: 16))
+                                    .font(.kpubWorld(size: 21))
                                     .foregroundColor((isDarkMode ? Color.darkText : Color.lightText).opacity(0.6))
                                     .padding(.top, 40)
                             }
@@ -99,23 +101,12 @@ struct ArchiveEntryRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            // Month header (only show if different from previous)
-            HStack {
-                Text(DateUtils.formatMonth(entry.date))
-                    .font(.crisis(size: 24))
-                    .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
-                Spacer()
-            }
-            .onTapGesture {
-                onDateTap()
-            }
-            
             // Date and content
             VStack(alignment: .leading, spacing: 12) {
                 // Date and weekday
                 HStack {
                     Text(DateUtils.formatDay(entry.date))
-                        .font(.crisis(size: 48))
+                        .font(.crisis(size: 24))
                         .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                     
                     Text(DateUtils.formatWeekday(entry.date))
@@ -131,7 +122,7 @@ struct ArchiveEntryRow: View {
                 // Content
                 if !entry.content.isEmpty {
                     Text(entry.content)
-                        .font(.kpubWorld(size: 13))
+                        .font(.kpubWorld(size: 18))
                         .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                         .lineSpacing(6)
                         .multilineTextAlignment(.leading)
@@ -154,5 +145,19 @@ struct ArchiveEntryRow: View {
     )
     .modelContainer(container)
     .preferredColorScheme(.dark)
+}
+
+#Preview("Light Mode") {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: DailyEntry.self, configurations: config)
+    
+    ArchiveView(
+        onDateTap: {}, 
+        onToggleDarkMode: {},
+        onShare: {},
+        isDarkMode: false
+    )
+    .modelContainer(container)
+    .preferredColorScheme(.light)
 }
 

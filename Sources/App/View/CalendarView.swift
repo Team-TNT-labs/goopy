@@ -9,13 +9,17 @@ import SwiftUI
 
 struct ScrollableCalendarView: View {
     let isDarkMode: Bool
-    @State private var currentMonth: Date = Date()
+    @State private var currentMonthIndex: Int = 12 // 현재 월을 중앙에 위치 (0-based index)
     let onMonthChanged: ((Date) -> Void)?
     
+    private var currentMonth: Date {
+        Calendar.current.date(byAdding: .month, value: currentMonthIndex - 12, to: Date()) ?? Date()
+    }
+    
     var body: some View {
-        TabView(selection: $currentMonth) {
-            ForEach(-12...12, id: \.self) { monthOffset in
-                let month = Calendar.current.date(byAdding: .month, value: monthOffset, to: Date()) ?? Date()
+        TabView(selection: $currentMonthIndex) {
+            ForEach(0...24, id: \.self) { monthIndex in
+                let month = Calendar.current.date(byAdding: .month, value: monthIndex - 12, to: Date()) ?? Date()
                 
                 VStack(spacing: 8) {
                     // 월 표시
@@ -50,15 +54,16 @@ struct ScrollableCalendarView: View {
                 .padding(.vertical, 16)
                 .padding(.horizontal, 14)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .tag(month)
+                .tag(monthIndex)
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .frame(height: 300) // 명시적 높이 설정
-        .onChange(of: currentMonth) { oldValue, newValue in
+        .onChange(of: currentMonthIndex) { oldValue, newValue in
             // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
             if oldValue != newValue {
-                onMonthChanged?(newValue)
+                let newMonth = Calendar.current.date(byAdding: .month, value: newValue - 12, to: Date()) ?? Date()
+                onMonthChanged?(newMonth)
             }
         }
     }
