@@ -44,7 +44,7 @@ struct FloatingTabBar: View {
                 Text(currentView == .main ? "DAY" : "MONTH")
                     .font(.crisis(size: 20))
                     .foregroundColor(isDarkMode ? Color.darkBackground : Color.lightBackground)
-                    .frame(width: currentView == .main ? 80 : 100, height: 32)
+                    .frame(width: currentView == .main ? 150 : 150, height: 32)
                     .background(
                         Ellipse()
                             .fill(isDarkMode ? Color.darkText : Color.lightText)
@@ -62,9 +62,8 @@ struct FloatingTabBar: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
         .padding(.horizontal, 20)
-        .padding(.bottom, 54) // SafeArea 고려 + 20pt 위로
+        .padding(.bottom, 60) // SafeArea 고려 + 20pt 위로
         .scaleEffect(isPressed ? 0.95 : 1.0)
-        .animation(.easeInOut(duration: 0.1), value: isPressed)
     }
 }
 
