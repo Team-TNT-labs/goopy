@@ -11,15 +11,26 @@ struct ScrollableCalendarView: View {
     let isDarkMode: Bool
     @State private var currentMonthIndex: Int = 12 // 현재 월을 중앙에 위치 (0-based index)
     let onMonthChanged: ((Date) -> Void)?
+    let onDateTap: ((Date) -> Void)?
+    
+    // 월 인덱스를 실제 날짜로 변환하는 헬퍼 함수
+    private func monthFromIndex(_ index: Int) -> Date {
+        let calendar = Calendar.current
+        let today = Date()
+        
+        // 현재 월의 첫째 날을 기준으로 계산
+        let currentMonth = calendar.dateInterval(of: .month, for: today)?.start ?? today
+        return calendar.date(byAdding: .month, value: index - 12, to: currentMonth) ?? today
+    }
     
     private var currentMonth: Date {
-        Calendar.current.date(byAdding: .month, value: currentMonthIndex - 12, to: Date()) ?? Date()
+        return monthFromIndex(currentMonthIndex)
     }
     
     var body: some View {
         TabView(selection: $currentMonthIndex) {
             ForEach(0...24, id: \.self) { monthIndex in
-                let month = Calendar.current.date(byAdding: .month, value: monthIndex - 12, to: Date()) ?? Date()
+                let month = monthFromIndex(monthIndex)
                 
                 VStack(spacing: 8) {
                     // 월 표시
@@ -46,7 +57,7 @@ struct ScrollableCalendarView: View {
                                 Text("")
                                     .frame(height: 24)
                             } else {
-                                ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode)
+                                ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode, onDateTap: onDateTap)
                             }
                         }
                     }
@@ -62,7 +73,7 @@ struct ScrollableCalendarView: View {
         .onChange(of: currentMonthIndex) { oldValue, newValue in
             // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
             if oldValue != newValue {
-                let newMonth = Calendar.current.date(byAdding: .month, value: newValue - 12, to: Date()) ?? Date()
+                let newMonth = monthFromIndex(newValue)
                 onMonthChanged?(newMonth)
             }
         }
@@ -112,6 +123,7 @@ struct ScrollableCalendarDayView: View {
     let day: Int
     let month: Date
     let isDarkMode: Bool
+    let onDateTap: ((Date) -> Void)?
     
     var body: some View {
         let isTodayDay = isToday(day, month: month)
@@ -137,6 +149,15 @@ struct ScrollableCalendarDayView: View {
                 Circle()
                     .stroke(borderColor, lineWidth: isTodayDay ? 2 : 0)
             )
+            .onTapGesture {
+                let calendar = Calendar.current
+                let year = calendar.component(.year, from: month)
+                let monthComponent = calendar.component(.month, from: month)
+                
+                // 단순하고 강력한 날짜 생성
+                let selectedDate = calendar.date(from: DateComponents(year: year, month: monthComponent, day: day)) ?? Date()
+                onDateTap?(selectedDate)
+            }
     }
     
     // 오늘인지 확인
@@ -271,9 +292,15 @@ struct CalendarDayView: View {
 }
 
 #Preview {
-    ScrollableCalendarView(isDarkMode: true, onMonthChanged: { month in
-        print("Month changed to: \(month)")
-    })
+    ScrollableCalendarView(
+        isDarkMode: true, 
+        onMonthChanged: { month in
+            print("Month changed to: \(month)")
+        },
+        onDateTap: { date in
+            print("Date tapped: \(date)")
+        }
+    )
         .preferredColorScheme(.dark)
 }
 

@@ -1,11 +1,30 @@
 {
   "fill" : {
-    "automatic-gradient" : "display-p3:0.15391,0.27070,0.44504,1.00000"
+    "automatic-gradient" : "display-p3:0.71764,0.81979,0.94940,1.00000"
   },
   "groups" : [
     {
       "layers" : [
         {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "srgb:0.00000,0.00000,0.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "display-p3:0.71764,0.81979,0.94940,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "solid" : "srgb:0.71919,0.85688,1.00000,1.00000"
+              }
+            }
+          ],
           "glass" : false,
           "image-name" : "GOOPY.png",
           "name" : "GOOPY",

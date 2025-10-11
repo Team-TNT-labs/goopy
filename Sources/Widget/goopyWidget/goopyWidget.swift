@@ -123,7 +123,7 @@ struct goopyWidgetEntryView : View {
             case .text:
                 // 텍스트 모드: 일기 내용 표시
                 Text(entry.content.isEmpty ? "오늘의 생각을\n남겨보세요" : entry.content)
-                    .font(.kpubWorld(size: 12))
+                    .font(.kpubWorld(size: 13))
                     .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
@@ -170,7 +170,7 @@ struct goopyWidgetEntryView : View {
                 .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
                 // 일 (가장 크게)
                 Text(formatDay(entry.date))
-                    .font(.crisis(size: 60))
+                    .font(.crisis(size: 45))
                     .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
                 // 요일 (가장 위)
                 Text(formatWeekday(entry.date))
@@ -178,12 +178,12 @@ struct goopyWidgetEntryView : View {
                     .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
                 
             }
-            .frame(width: 70)
+            .frame(width: 100)
             
             // 오른쪽: 일기 내용
             VStack(alignment: .leading, spacing: 6) {
                 Text(entry.content.isEmpty ? "오늘의 생각을 남겨보세요" : entry.content)
-                    .font(.kpubWorld(size: 12))
+                    .font(.kpubWorld(size: 13))
                     .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
                     .lineLimit(nil)
                     .multilineTextAlignment(.leading)

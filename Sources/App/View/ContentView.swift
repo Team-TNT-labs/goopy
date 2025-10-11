@@ -223,7 +223,7 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $currentDate) {
-            ForEach(-30...30, id: \.self) { dayOffset in
+            ForEach(-3650...3650, id: \.self) { dayOffset in
                 let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: DateUtils.today()) ?? DateUtils.today()
                 
                 DayPageView(

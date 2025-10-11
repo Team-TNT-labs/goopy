@@ -45,7 +45,8 @@ struct ArchiveView: View {
                             calendarMonth = month
                             selectedMonth = month
                         }
-                    }
+                    },
+                    onDateTap: onDateSelect
                 )
                 .padding(.horizontal, 20)
                 .padding(.top, 60)                
@@ -61,10 +62,10 @@ struct ArchiveView: View {
                         if filteredEntries.isEmpty {
                             // 해당 월에 글이 없을 때
                             VStack(spacing: 16) {
-                                Text("이 달에는 작성된 글이 없습니다")
-                                    .font(.kpubWorld(size: 21))
-                                    .foregroundColor((isDarkMode ? Color.darkText : Color.lightText).opacity(0.6))
-                                    .padding(.top, 40)
+                            Text(NSLocalizedString("no_entries_this_month", comment: "No entries written this month"))
+                                .font(.kpubWorld(size: 21))
+                                .foregroundColor((isDarkMode ? Color.darkText : Color.lightText).opacity(0.6))
+                                .padding(.top, 40)
                             }
                         } else {
                             ForEach(filteredEntries, id: \.id) { entry in
