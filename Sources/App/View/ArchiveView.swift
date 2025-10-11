@@ -16,6 +16,7 @@ struct ArchiveView: View {
     @State private var selectedMonth: Date = Date()
     @State private var calendarMonth: Date = Date()
     let onDateTap: () -> Void
+    let onDateSelect: (Date) -> Void
     let onToggleDarkMode: () -> Void
     let onShare: () -> Void
     let isDarkMode: Bool
@@ -67,7 +68,7 @@ struct ArchiveView: View {
                             }
                         } else {
                             ForEach(filteredEntries, id: \.id) { entry in
-                                ArchiveEntryRow(entry: entry, onDateTap: onDateTap, isDarkMode: isDarkMode)
+                                ArchiveEntryRow(entry: entry, onDateTap: onDateTap, onDateSelect: onDateSelect, isDarkMode: isDarkMode)
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
                             }
@@ -97,6 +98,7 @@ struct ArchiveView: View {
 struct ArchiveEntryRow: View {
     let entry: DailyEntry
     let onDateTap: () -> Void
+    let onDateSelect: (Date) -> Void
     let isDarkMode: Bool
     
     var body: some View {
@@ -116,7 +118,7 @@ struct ArchiveEntryRow: View {
                     Spacer()
                 }
                 .onTapGesture {
-                    onDateTap()
+                    onDateSelect(entry.date)
                 }
                 
                 // Content
@@ -139,6 +141,7 @@ struct ArchiveEntryRow: View {
     
     ArchiveView(
         onDateTap: {}, 
+        onDateSelect: { _ in },
         onToggleDarkMode: {},
         onShare: {},
         isDarkMode: true
@@ -153,6 +156,7 @@ struct ArchiveEntryRow: View {
     
     ArchiveView(
         onDateTap: {}, 
+        onDateSelect: { _ in },
         onToggleDarkMode: {},
         onShare: {},
         isDarkMode: false

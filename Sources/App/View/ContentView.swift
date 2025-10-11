@@ -59,6 +59,7 @@ struct ContentView: View {
     @State private var currentDate: Date = DateUtils.today()
     @State private var refreshBackground = UUID()
     @State private var isDarkMode: Bool = true // 다크 모드 기본값
+    @State private var selectedDate: Date? = nil // 아카이브에서 선택된 날짜
     
     var body: some View {
         NavigationView {
@@ -109,6 +110,14 @@ struct ContentView: View {
                                 withAnimation(.none) {
                                     currentView = .main 
                                 }
+                            },
+                            onDateSelect: { date in
+                                selectedDate = date
+                                currentDate = date
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    currentView = .main
+                                }
+                                loadEntryForDate(date)
                             },
                             onToggleDarkMode: { toggleDarkMode() },
                             onShare: { shareEntry() },
