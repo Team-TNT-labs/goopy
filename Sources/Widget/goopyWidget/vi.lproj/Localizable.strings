@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "Văn bản";
+"widget_mode_calendar" = "Lịch";
+"widget_mode_date_only" = "Chỉ Ngày";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (Văn bản)";
+"widget_calendar_title" = "Goopy Diary (Lịch)";
+"widget_date_only_title" = "Goopy Diary (Chỉ Ngày)";
+
+/* Widget Descriptions */
+"widget_text_description" = "Xem nhật ký hôm nay ở định dạng văn bản.";
+"widget_calendar_description" = "Xem nhật ký hôm nay và lịch.";
+"widget_date_only_description" = "Xem ngày hôm nay.";
+
+/* ContentView */
+"today_thoughts_placeholder" = "Chia sẻ suy nghĩ và cảm xúc của bạn hôm nay";

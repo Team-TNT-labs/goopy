@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "نص";
+"widget_mode_calendar" = "تقويم";
+"widget_mode_date_only" = "التاريخ فقط";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (نص)";
+"widget_calendar_title" = "Goopy Diary (تقويم)";
+"widget_date_only_title" = "Goopy Diary (التاريخ فقط)";
+
+/* Widget Descriptions */
+"widget_text_description" = "تحقق من مذكرات اليوم بتنسيق نصي.";
+"widget_calendar_description" = "تحقق من مذكرات اليوم والتقويم.";
+"widget_date_only_description" = "تحقق من تاريخ اليوم.";
+
+/* ContentView */
+"today_thoughts_placeholder" = "شارك أفكارك ومشاعرك لهذا اليوم";

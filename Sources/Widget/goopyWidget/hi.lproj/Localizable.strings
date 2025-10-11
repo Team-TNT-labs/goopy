@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "पाठ";
+"widget_mode_calendar" = "कैलेंडर";
+"widget_mode_date_only" = "केवल तारीख";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (पाठ)";
+"widget_calendar_title" = "Goopy Diary (कैलेंडर)";
+"widget_date_only_title" = "Goopy Diary (केवल तारीख)";
+
+/* Widget Descriptions */
+"widget_text_description" = "आज की डायरी को पाठ प्रारूप में देखें।";
+"widget_calendar_description" = "आज की डायरी और कैलेंडर देखें।";
+"widget_date_only_description" = "आज की तारीख देखें।";
+
+/* ContentView */
+"today_thoughts_placeholder" = "आज के अपने विचार और भावनाएं साझा करें";

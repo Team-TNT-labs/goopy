@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "文本";
+"widget_mode_calendar" = "日历";
+"widget_mode_date_only" = "仅日期";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (文本)";
+"widget_calendar_title" = "Goopy Diary (日历)";
+"widget_date_only_title" = "Goopy Diary (仅日期)";
+
+/* Widget Descriptions */
+"widget_text_description" = "以文本格式查看今天的日记。";
+"widget_calendar_description" = "查看今天的日记和日历。";
+"widget_date_only_description" = "查看今天的日期。";
+
+/* ContentView */
+"today_thoughts_placeholder" = "请记录今天的想法和感受";

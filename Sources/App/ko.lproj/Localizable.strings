@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "작성된 글이 없습니다";
+
+/* ContentView */
+"today_thoughts_placeholder" = "오늘의 생각, 감정을 남겨주세요";

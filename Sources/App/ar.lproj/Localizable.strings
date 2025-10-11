@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "لا توجد كتابات هذا الشهر";
+
+/* ContentView */
+"today_thoughts_placeholder" = "شارك أفكارك ومشاعرك لهذا اليوم";

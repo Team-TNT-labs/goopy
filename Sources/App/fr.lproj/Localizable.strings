@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "Aucun écrit ce mois-ci";
+
+/* ContentView */
+"today_thoughts_placeholder" = "Partagez vos pensées et sentiments d'aujourd'hui";

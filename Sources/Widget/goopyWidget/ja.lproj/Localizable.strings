@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "テキスト";
+"widget_mode_calendar" = "カレンダー";
+"widget_mode_date_only" = "日付のみ";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (テキスト)";
+"widget_calendar_title" = "Goopy Diary (カレンダー)";
+"widget_date_only_title" = "Goopy Diary (日付のみ)";
+
+/* Widget Descriptions */
+"widget_text_description" = "今日の日記をテキストで確認してください。";
+"widget_calendar_description" = "今日の日記とカレンダーを確認してください。";
+"widget_date_only_description" = "今日の日付を確認してください。";
+
+/* ContentView */
+"today_thoughts_placeholder" = "今日の思いや感情を記録してください";

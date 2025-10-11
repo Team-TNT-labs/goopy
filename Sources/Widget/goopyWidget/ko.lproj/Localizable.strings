@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "텍스트";
+"widget_mode_calendar" = "캘린더";
+"widget_mode_date_only" = "날짜만";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (텍스트)";
+"widget_calendar_title" = "Goopy Diary (캘린더)";
+"widget_date_only_title" = "Goopy Diary (날짜만)";
+
+/* Widget Descriptions */
+"widget_text_description" = "오늘의 일기를 텍스트로 확인하세요.";
+"widget_calendar_description" = "오늘의 일기와 캘린더를 확인하세요.";
+"widget_date_only_description" = "오늘 날짜를 확인하세요.";
+
+/* ContentView */
+"today_thoughts_placeholder" = "오늘의 생각, 감정을 남겨주세요";

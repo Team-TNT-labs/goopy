@@ -32,9 +32,9 @@ enum WidgetMode: Int, CaseIterable {
     
     var displayName: String {
         switch self {
-        case .text: return "텍스트"
-        case .calendar: return "캘린더"
-        case .dateOnly: return "날짜만"
+        case .text: return NSLocalizedString("widget_mode_text", comment: "Text mode")
+        case .calendar: return NSLocalizedString("widget_mode_calendar", comment: "Calendar mode")
+        case .dateOnly: return NSLocalizedString("widget_mode_date_only", comment: "Date only mode")
         }
     }
 }
@@ -47,7 +47,7 @@ struct Provider: TimelineProvider {
     }
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), content: "오늘의 생각을 남겨보세요", colorIndex: 0, widgetMode: widgetMode, isDarkMode: true)
+        SimpleEntry(date: Date(), content: NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder"), colorIndex: 0, widgetMode: widgetMode, isDarkMode: true)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -66,10 +66,10 @@ struct Provider: TimelineProvider {
     private func loadTodayEntry() -> SimpleEntry {
         // 앱과 데이터 공유를 위한 UserDefaults
         guard let userDefaults = UserDefaults(suiteName: "group.com.goopy") else {
-            return SimpleEntry(date: Date(), content: "오늘의 생각을 남겨보세요", colorIndex: 0, widgetMode: widgetMode, isDarkMode: true)
+            return SimpleEntry(date: Date(), content: NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder"), colorIndex: 0, widgetMode: widgetMode, isDarkMode: true)
         }
         
-        let content = userDefaults.string(forKey: "todayContent") ?? "오늘의 생각을 남겨보세요"
+        let content = userDefaults.string(forKey: "todayContent") ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
         let colorIndex = max(0, min(6, userDefaults.integer(forKey: "todayColorIndex")))
         let isDarkMode = userDefaults.bool(forKey: "isDarkMode")
         
@@ -122,7 +122,7 @@ struct goopyWidgetEntryView : View {
             switch entry.widgetMode {
             case .text:
                 // 텍스트 모드: 일기 내용 표시
-                Text(entry.content.isEmpty ? "오늘의 생각을\n남겨보세요" : entry.content)
+                Text(entry.content.isEmpty ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder") : entry.content)
                     .font(.kpubWorld(size: 13))
                     .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
                     .multilineTextAlignment(.center)
@@ -182,7 +182,7 @@ struct goopyWidgetEntryView : View {
             
             // 오른쪽: 일기 내용
             VStack(alignment: .leading, spacing: 6) {
-                Text(entry.content.isEmpty ? "오늘의 생각을 남겨보세요" : entry.content)
+                Text(entry.content.isEmpty ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder") : entry.content)
                     .font(.kpubWorld(size: 13))
                     .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
                     .lineLimit(nil)
@@ -326,8 +326,8 @@ struct goopyTextWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider(mode: .text)) { entry in
             goopyWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Goopy Diary (텍스트)")
-        .description("오늘의 일기를 텍스트로 확인하세요.")
+        .configurationDisplayName(NSLocalizedString("widget_text_title", comment: "Goopy Diary (Text)"))
+        .description(NSLocalizedString("widget_text_description", comment: "Check today's diary in text format."))
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -340,8 +340,8 @@ struct goopyCalendarWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider(mode: .calendar)) { entry in
             goopyWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Goopy Diary (캘린더)")
-        .description("오늘의 일기와 캘린더를 확인하세요.")
+        .configurationDisplayName(NSLocalizedString("widget_calendar_title", comment: "Goopy Diary (Calendar)"))
+        .description(NSLocalizedString("widget_calendar_description", comment: "Check today's diary and calendar."))
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -354,8 +354,8 @@ struct goopyDateOnlyWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider(mode: .dateOnly)) { entry in
             goopyWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Goopy Diary (날짜만)")
-        .description("오늘 날짜를 확인하세요.")
+        .configurationDisplayName(NSLocalizedString("widget_date_only_title", comment: "Goopy Diary (Date Only)"))
+        .description(NSLocalizedString("widget_date_only_description", comment: "Check today's date."))
         .supportedFamilies([.systemSmall])
     }
 }

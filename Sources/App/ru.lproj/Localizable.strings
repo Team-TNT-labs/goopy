@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "Записей в этом месяце нет";
+
+/* ContentView */
+"today_thoughts_placeholder" = "Поделитесь своими мыслями и чувствами на сегодня";

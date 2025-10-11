@@ -149,7 +149,7 @@ struct ContentView: View {
     }
 
     private func shareEntry() {
-        let text = todayEntry?.content ?? "오늘의 생각, 감정을 남겨주세요"
+        let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
         let dateString = DateUtils.formatDate(currentDate)
         let activityVC = UIActivityViewController(
             activityItems: ["\(dateString)\n\n\(text)"],
@@ -295,7 +295,7 @@ struct DayPageView: View {
                     VStack {
                         Spacer()
                         
-                        Text(entry?.content.isEmpty == false ? entry!.content : "오늘의 생각, 감정을 남겨주세요")
+                        Text(entry?.content.isEmpty == false ? entry!.content : NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder"))
                             .font(.kpubWorld(size: 21))
                             .foregroundColor(entry?.content.isEmpty == false ? (isDarkMode ? Color.darkText : Color.lightText) : (isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)))
                             .multilineTextAlignment(.center)

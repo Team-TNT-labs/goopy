@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "इस महीने कोई लेख नहीं";
+
+/* ContentView */
+"today_thoughts_placeholder" = "आज के अपने विचार और भावनाएं साझा करें";

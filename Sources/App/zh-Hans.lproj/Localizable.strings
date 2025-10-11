@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  goopy
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* ArchiveView */
+"no_entries_this_month" = "本月没有记录";
+
+/* ContentView */
+"today_thoughts_placeholder" = "请记录今天的想法和感受";

@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "Texto";
+"widget_mode_calendar" = "Calendario";
+"widget_mode_date_only" = "Solo Fecha";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (Texto)";
+"widget_calendar_title" = "Goopy Diary (Calendario)";
+"widget_date_only_title" = "Goopy Diary (Solo Fecha)";
+
+/* Widget Descriptions */
+"widget_text_description" = "Revisa el diario de hoy en formato de texto.";
+"widget_calendar_description" = "Revisa el diario de hoy y el calendario.";
+"widget_date_only_description" = "Revisa la fecha de hoy.";
+
+/* ContentView */
+"today_thoughts_placeholder" = "Comparte tus pensamientos y sentimientos de hoy";

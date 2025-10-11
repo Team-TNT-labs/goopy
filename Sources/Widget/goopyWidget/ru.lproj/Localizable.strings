@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  goopyWidget
+
+  Created by Localization on 2025-10-12.
+*/
+
+/* Widget Modes */
+"widget_mode_text" = "Текст";
+"widget_mode_calendar" = "Календарь";
+"widget_mode_date_only" = "Только Дата";
+
+/* Widget Titles */
+"widget_text_title" = "Goopy Diary (Текст)";
+"widget_calendar_title" = "Goopy Diary (Календарь)";
+"widget_date_only_title" = "Goopy Diary (Только Дата)";
+
+/* Widget Descriptions */
+"widget_text_description" = "Просмотрите сегодняшний дневник в текстовом формате.";
+"widget_calendar_description" = "Просмотрите сегодняшний дневник и календарь.";
+"widget_date_only_description" = "Просмотрите сегодняшнюю дату.";
+
+/* ContentView */
+"today_thoughts_placeholder" = "Поделитесь своими мыслями и чувствами на сегодня";
