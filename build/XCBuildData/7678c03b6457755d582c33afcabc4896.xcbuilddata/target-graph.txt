@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'goopyWidgetExtension' in project 'goopy' (no dependencies)
