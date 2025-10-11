@@ -62,7 +62,7 @@ struct ContentView: View {
     @State private var selectedDate: Date? = nil // 아카이브에서 선택된 날짜
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // Dynamic background based on dark/light mode
                 (isDarkMode ? Color.darkBackground : Color.lightBackground)
@@ -304,64 +304,67 @@ struct DayPageView: View {
     @State private var refreshID = UUID()
     
     var body: some View {
-        ZStack {
-            // Background color based on dark/light mode
-            (isDarkMode ? Color.darkBackground : Color.lightBackground)
-                .id(refreshID)
-            
-            VStack {
-                Spacer()
-                    .frame(height: 100) // SafeArea 대신 상단 여백
+        GeometryReader { geometry in
+            ZStack {
+                // Background color based on dark/light mode
+                (isDarkMode ? Color.darkBackground : Color.lightBackground)
+                    .id(refreshID)
                 
-                // Date display
+                // 모든 디바이스에서 풀스크린 레이아웃 사용
                 VStack {
-                    Text(DateUtils.formatMonth(date))
-                        .font(.crisis(size: 40))
-                        .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
+                    Spacer()
+                        .frame(height: 100) // SafeArea 대신 상단 여백
                     
-                    Text(DateUtils.formatDay(date))
-                        .font(.crisis(size: 170))
-                        .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
-                    
-                    Text(DateUtils.formatWeekday(date))
-                        .font(.crisis(size: 45))
-                        .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
-                }
-                .onTapGesture {
-                    onTodayTap()
-                }
-                
-                // Text field area (중앙 정렬)
-                NavigationLink(destination: InputView(date: date)) {
+                    // Date display
                     VStack {
-                        Spacer()
+                        Text(DateUtils.formatMonth(date))
+                            .font(.crisis(size: 40))
+                            .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                         
-                        Text(entry?.content.isEmpty == false ? entry!.content : NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder"))
-                            .font(.kpubWorld(size: 21))
-                            .foregroundColor(entry?.content.isEmpty == false ? (isDarkMode ? Color.darkText : Color.lightText) : (isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)))
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 24)
-                            .frame(minHeight: 200)
+                        Text(DateUtils.formatDay(date))
+                            .font(.crisis(size: 170))
+                            .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                         
-                        Spacer()
+                        Text(DateUtils.formatWeekday(date))
+                            .font(.crisis(size: 45))
+                            .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                     }
+                    .onTapGesture {
+                        onTodayTap()
+                    }
+                    
+                    // Text field area (중앙 정렬)
+                    NavigationLink(destination: InputView(date: date)) {
+                        VStack {
+                            Spacer()
+                            
+                            Text(entry?.content.isEmpty == false ? entry!.content : NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder"))
+                                .font(.kpubWorld(size: 21))
+                                .foregroundColor(entry?.content.isEmpty == false ? (isDarkMode ? Color.darkText : Color.lightText) : (isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)))
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 24)
+                                .frame(minHeight: 200)
+                            
+                            Spacer()
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    Spacer()
+                        .frame(height: 120) // FloatingTabBar 공간 확보
                 }
-                .buttonStyle(PlainButtonStyle())
                 
-                Spacer()
-                    .frame(height: 120) // FloatingTabBar 공간 확보
-            }
-            
-            // FloatingTabBar (화면 하단 고정)
-            VStack {
-                Spacer()
-                FloatingTabBar(
-                    isDarkMode: isDarkMode,
-                    currentView: .main,
-                    onToggleDarkMode: onToggleDarkMode,
-                    onShare: onShare,
-                    onSwitchView: onArchiveTap
-                )
+                // FloatingTabBar (화면 하단 고정)
+                VStack {
+                    Spacer()
+                    FloatingTabBar(
+                        isDarkMode: isDarkMode,
+                        currentView: .main,
+                        onToggleDarkMode: onToggleDarkMode,
+                        onShare: onShare,
+                        onSwitchView: onArchiveTap
+                    )
+                }
             }
         }
         .ignoresSafeArea(.all) // 전체 화면 색상 적용

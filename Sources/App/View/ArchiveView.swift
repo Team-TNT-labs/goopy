@@ -11,7 +11,7 @@ import SwiftData
 
 struct ArchiveView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \DailyEntry.date, order: .reverse) 
+    @Query(sort: \DailyEntry.date, order: .reverse)
     private var allEntries: [DailyEntry]
     @State private var selectedMonth: Date = Date()
     @State private var calendarMonth: Date = Date()
@@ -35,62 +35,64 @@ struct ArchiveView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                // 캘린더 뷰 (고정)
-                ScrollableCalendarView(
-                    isDarkMode: isDarkMode,
-                    onMonthChanged: { month in
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            calendarMonth = month
-                            selectedMonth = month
-                        }
-                    },
-                    onDateTap: onDateSelect
-                )
-                .padding(.horizontal, 20)
-                .padding(.top, 60)                
-                // 디바이더
-                Rectangle()
-                    .fill((isDarkMode ? Color.darkText : Color.lightText).opacity(0.2))
-                    .frame(height: 1)
-                    .padding(.horizontal, 20)
-                
-                // 일기 목록 (스크롤)
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        if filteredEntries.isEmpty {
-                            // 해당 월에 글이 없을 때
-                            VStack(spacing: 16) {
-                            Text(NSLocalizedString("no_entries_this_month", comment: "No entries written this month"))
-                                .font(.kpubWorld(size: 21))
-                                .foregroundColor((isDarkMode ? Color.darkText : Color.lightText).opacity(0.6))
-                                .padding(.top, 40)
+        GeometryReader { geometry in
+            ZStack {
+                VStack(spacing: 0) {
+                    // 캘린더 뷰 (고정)
+                    ScrollableCalendarView(
+                        isDarkMode: isDarkMode,
+                        onMonthChanged: { month in
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                calendarMonth = month
+                                selectedMonth = month
                             }
-                        } else {
-                            ForEach(filteredEntries, id: \.id) { entry in
-                                ArchiveEntryRow(entry: entry, onDateTap: onDateTap, onDateSelect: onDateSelect, isDarkMode: isDarkMode)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
+                        },
+                        onDateTap: onDateSelect
+                    )
+                    .padding(.horizontal, geometry.size.width > 700 ? 10 : 20)
+                    .padding(.top, 60)
+                    // 디바이더
+                    Rectangle()
+                        .fill((isDarkMode ? Color.darkText : Color.lightText).opacity(0.2))
+                        .frame(height: 1)
+                        .padding(.horizontal, geometry.size.width > 700 ? 10 : 20)
+                    
+                    // 일기 목록 (스크롤)
+                    ScrollView {
+                        LazyVStack(spacing: 0) {
+                            if filteredEntries.isEmpty {
+                                // 해당 월에 글이 없을 때
+                                VStack(spacing: 16) {
+                                    Text(NSLocalizedString("no_entries_this_month", comment: "No entries written this month"))
+                                        .font(.kpubWorld(size: 21))
+                                        .foregroundColor((isDarkMode ? Color.darkText : Color.lightText).opacity(0.6))
+                                        .padding(.top, 40)
+                                }
+                            } else {
+                                ForEach(filteredEntries, id: \.id) { entry in
+                                    ArchiveEntryRow(entry: entry, onDateTap: onDateTap, onDateSelect: onDateSelect, isDarkMode: isDarkMode)
+                                        .padding(.horizontal, geometry.size.width > 700 ? 10 : 16)
+                                        .padding(.vertical, 8)
+                                }
                             }
                         }
+                        .padding(.top, 20)
+                        .padding(.bottom, 120) // FloatingTabBar 공간 확보
                     }
-                    .padding(.top, 20)
-                    .padding(.bottom, 120) // FloatingTabBar 공간 확보
                 }
-            }
-            .background(isDarkMode ? Color.darkBackground : Color.lightBackground)
-            
-            // FloatingTabBar
-            VStack {
-                Spacer()
-                FloatingTabBar(
-                    isDarkMode: isDarkMode,
-                    currentView: .archive,
-                    onToggleDarkMode: onToggleDarkMode,
-                    onShare: onShare,
-                    onSwitchView: onDateTap
-                )
+                .background(isDarkMode ? Color.darkBackground : Color.lightBackground)
+                
+                // FloatingTabBar
+                VStack {
+                    Spacer()
+                    FloatingTabBar(
+                        isDarkMode: isDarkMode,
+                        currentView: .archive,
+                        onToggleDarkMode: onToggleDarkMode,
+                        onShare: onShare,
+                        onSwitchView: onDateTap
+                    )
+                }
             }
         }
     }
@@ -141,7 +143,7 @@ struct ArchiveEntryRow: View {
     let container = try! ModelContainer(for: DailyEntry.self, configurations: config)
     
     ArchiveView(
-        onDateTap: {}, 
+        onDateTap: {},
         onDateSelect: { _ in },
         onToggleDarkMode: {},
         onShare: {},
@@ -156,7 +158,7 @@ struct ArchiveEntryRow: View {
     let container = try! ModelContainer(for: DailyEntry.self, configurations: config)
     
     ArchiveView(
-        onDateTap: {}, 
+        onDateTap: {},
         onDateSelect: { _ in },
         onToggleDarkMode: {},
         onShare: {},
@@ -165,4 +167,3 @@ struct ArchiveEntryRow: View {
     .modelContainer(container)
     .preferredColorScheme(.light)
 }
-

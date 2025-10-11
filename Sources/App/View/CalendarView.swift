@@ -28,53 +28,55 @@ struct ScrollableCalendarView: View {
     }
     
     var body: some View {
-        TabView(selection: $currentMonthIndex) {
-            ForEach(0...24, id: \.self) { monthIndex in
-                let month = monthFromIndex(monthIndex)
-                
-                VStack(spacing: 8) {
-                    // 월 표시
-                    Text(formatMonth(month))
-                        .font(.crisis(size: 24))
-                        .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
-                        .padding(.bottom, 8)
+        GeometryReader { geometry in
+            TabView(selection: $currentMonthIndex) {
+                ForEach(0...24, id: \.self) { monthIndex in
+                    let month = monthFromIndex(monthIndex)
                     
-                    // 캘린더 그리드
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 2) {
-                        // 요일 헤더
-                        ForEach(Array(["S", "M", "T", "W", "T", "F", "S"].enumerated()), id: \.offset) { index, day in
-                            let headerColor = (isDarkMode ? Color.darkText : Color.lightText).opacity(0.7)
-                            Text(day)
-                                .font(.crisis(size: 14))
-                                .foregroundColor(headerColor)
-                                .frame(height: 32)
-                        }
+                    VStack(spacing: 8) {
+                        // 월 표시
+                        Text(formatMonth(month))
+                            .font(.crisis(size: geometry.size.width > 700 ? 28 : 24))
+                            .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
+                            .padding(.bottom, 8)
                         
-                        // 날짜들
-                        ForEach(calendarDays(for: month), id: \.self) { day in
-                            if day == 0 {
-                                // 빈 칸
-                                Text("")
-                                    .frame(height: 24)
-                            } else {
-                                ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode, onDateTap: onDateTap)
+                        // 캘린더 그리드
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: geometry.size.width > 700 ? 6 : 2), count: 7), spacing: geometry.size.width > 700 ? 6 : 2) {
+                            // 요일 헤더
+                            ForEach(Array(["S", "M", "T", "W", "T", "F", "S"].enumerated()), id: \.offset) { index, day in
+                                let headerColor = (isDarkMode ? Color.darkText : Color.lightText).opacity(0.7)
+                                Text(day)
+                                    .font(.crisis(size: geometry.size.width > 700 ? 12 : 14))
+                                    .foregroundColor(headerColor)
+                                    .frame(height: geometry.size.width > 700 ? 60 : 32)
+                            }
+                            
+                            // 날짜들
+                            ForEach(calendarDays(for: month), id: \.self) { day in
+                                if day == 0 {
+                                    // 빈 칸
+                                    Text("")
+                                        .frame(height: geometry.size.width > 700 ? 60 : 24)
+                                } else {
+                                    ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode, onDateTap: onDateTap, isWideScreen: geometry.size.width > 700)
+                                }
                             }
                         }
                     }
+                    .padding(.vertical, geometry.size.width > 700 ? 20 : 16)
+                    .padding(.horizontal, geometry.size.width > 700 ? 10 : 14)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .tag(monthIndex)
                 }
-                .padding(.vertical, 16)
-                .padding(.horizontal, 14)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .tag(monthIndex)
             }
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .frame(height: 300) // 명시적 높이 설정
-        .onChange(of: currentMonthIndex) { oldValue, newValue in
-            // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
-            if oldValue != newValue {
-                let newMonth = monthFromIndex(newValue)
-                onMonthChanged?(newMonth)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .frame(height: geometry.size.width > 700 ? 420 : 300) // 700 기준 캘린더 높이
+            .onChange(of: currentMonthIndex) { oldValue, newValue in
+                // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
+                if oldValue != newValue {
+                    let newMonth = monthFromIndex(newValue)
+                    onMonthChanged?(newMonth)
+                }
             }
         }
     }
@@ -124,6 +126,7 @@ struct ScrollableCalendarDayView: View {
     let month: Date
     let isDarkMode: Bool
     let onDateTap: ((Date) -> Void)?
+    let isWideScreen: Bool
     
     var body: some View {
         let isTodayDay = isToday(day, month: month)
@@ -137,17 +140,20 @@ struct ScrollableCalendarDayView: View {
             (isDarkMode ? Color.darkText : Color.lightText) : 
             Color.clear
         
+        let daySize: CGFloat = isWideScreen ? 50 : 36
+        let fontSize: CGFloat = isWideScreen ? 20 : 16
+        
         Text("\(day)")
-            .font(.crisis(size: 16))
+            .font(.crisis(size: fontSize))
             .foregroundColor(textColor)
-            .frame(width: 32, height: 32)
+            .frame(width: daySize, height: daySize)
             .background(
                 Circle()
                     .fill(backgroundColor)
             )
             .overlay(
                 Circle()
-                    .stroke(borderColor, lineWidth: isTodayDay ? 2 : 0)
+                    .stroke(borderColor, lineWidth: isTodayDay ? (isWideScreen ? 3 : 2) : 0)
             )
             .onTapGesture {
                 let calendar = Calendar.current
