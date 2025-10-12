@@ -29,12 +29,14 @@ enum WidgetMode: Int, CaseIterable {
     case text = 0
     case calendar = 1
     case dateOnly = 2
+    case largeDiary = 3
     
     var displayName: String {
         switch self {
         case .text: return NSLocalizedString("widget_mode_text", comment: "Text mode")
         case .calendar: return NSLocalizedString("widget_mode_calendar", comment: "Calendar mode")
         case .dateOnly: return NSLocalizedString("widget_mode_date_only", comment: "Date only mode")
+        case .largeDiary: return NSLocalizedString("widget_mode_large_diary", comment: "Large diary mode")
         }
     }
 }
@@ -134,6 +136,9 @@ struct goopyWidgetEntryView : View {
             case .dateOnly:
                 // 날짜만 모드: 미디움 위젯의 왼쪽 영역과 동일
                 dateOnlyView
+            case .largeDiary:
+                // 큰 일기 모드: 이미지와 같은 레이아웃
+                largeDiaryView
             }
         }
         .padding(8)
@@ -160,39 +165,45 @@ struct goopyWidgetEntryView : View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
+    @ViewBuilder
     private var mediumWidgetView: some View {
-        HStack(spacing: 16) {
-            // 왼쪽: 날짜 영역 (요일, 월, 일 세로 배치)
-            VStack(alignment: .center, spacing: 0) {
-                // 월
-            Text(formatMonth(entry.date))
-                .font(.crisis(size: 18))
-                .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
-                // 일 (가장 크게)
-                Text(formatDay(entry.date))
-                    .font(.crisis(size: 45))
-                    .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
-                // 요일 (가장 위)
-                Text(formatWeekday(entry.date))
+        switch entry.widgetMode {
+        case .largeDiary:
+            largeDiaryView
+        default:
+            HStack(spacing: 16) {
+                // 왼쪽: 날짜 영역 (요일, 월, 일 세로 배치)
+                VStack(alignment: .center, spacing: 0) {
+                    // 월
+                Text(formatMonth(entry.date))
                     .font(.crisis(size: 18))
                     .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+                    // 일 (가장 크게)
+                    Text(formatDay(entry.date))
+                        .font(.crisis(size: 45))
+                        .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+                    // 요일 (가장 위)
+                    Text(formatWeekday(entry.date))
+                        .font(.crisis(size: 18))
+                        .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+                    
+                }
+                .frame(width: 100)
                 
+                // 오른쪽: 일기 내용
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(entry.content.isEmpty ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder") : entry.content)
+                        .font(.kpubWorld(size: 13))
+                        .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
+                        .lineSpacing(2)
+                    
+                }
+                .frame(width: 200)
             }
-            .frame(width: 100)
-            
-            // 오른쪽: 일기 내용
-            VStack(alignment: .leading, spacing: 6) {
-                Text(entry.content.isEmpty ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder") : entry.content)
-                    .font(.kpubWorld(size: 13))
-                    .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.leading)
-                    .lineSpacing(2)
-                
-            }
-            .frame(width: 200)
+            .padding(12)
         }
-        .padding(12)
     }
     
     private func formatDate(_ date: Date) -> String {
@@ -316,6 +327,48 @@ struct goopyWidgetEntryView : View {
         let today = calendar.component(.day, from: now)
         return day == today
     }
+    
+    // 큰 일기 뷰 (이미지와 같은 레이아웃)
+    @ViewBuilder
+    private var largeDiaryView: some View {
+        VStack(spacing: 0) {
+            // 일기 내용 (상단, 중앙)
+            Spacer()
+            
+            Text(entry.content.isEmpty ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder") : entry.content)
+                .font(.kpubWorld(size: 16))
+                .foregroundColor(entry.content.isEmpty ? (entry.isDarkMode ? Color.darkText.opacity(0.6) : Color.lightText.opacity(0.6)) : (entry.isDarkMode ? Color.darkText : Color.lightText))
+                .multilineTextAlignment(.leading)
+                .lineSpacing(6)
+                .padding(.horizontal, 4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Spacer()
+            
+            // 날짜 정보 (하단)
+            HStack(alignment: .bottom) {
+                // 왼쪽: 월, 일
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(formatMonth(entry.date))
+                        .font(.crisis(size: 18))
+                        .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+                    
+                    Text(formatDay(entry.date))
+                        .font(.crisis(size: 18))
+                        .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+                }
+                
+                Spacer()
+                
+                // 오른쪽: 요일
+                Text(formatWeekday(entry.date))
+                    .font(.crisis(size: 18))
+                    .foregroundColor(entry.isDarkMode ? Color.darkText : Color.lightText)
+            }
+            .padding(.horizontal, 4)
+            .padding(.bottom, 4)
+        }
+    }
 }
 
 // 텍스트 위젯
@@ -360,12 +413,27 @@ struct goopyDateOnlyWidget: Widget {
     }
 }
 
+// 큰 일기 위젯
+struct goopyLargeDiaryWidget: Widget {
+    let kind: String = "goopyLargeDiaryWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider(mode: .largeDiary)) { entry in
+            goopyWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName(NSLocalizedString("widget_large_diary_title", comment: "Goopy Diary (Large)"))
+        .description(NSLocalizedString("widget_large_diary_description", comment: "Large diary widget with beautiful layout."))
+        .supportedFamilies([.systemMedium, .systemLarge])
+    }
+}
+
 @main
 struct goopyWidgetBundle: WidgetBundle {
     var body: some Widget {
         goopyTextWidget()
         goopyCalendarWidget()
         goopyDateOnlyWidget()
+        goopyLargeDiaryWidget()
     }
 }
 
