@@ -94,7 +94,7 @@ struct ScrollableCalendarView: View {
         } else if geometry.size.width > 700 {
             return 28
         } else {
-            return 24
+            return 20 // 24에서 20으로 감소
         }
     }
     
@@ -105,7 +105,7 @@ struct ScrollableCalendarView: View {
         } else if geometry.size.width > 700 {
             return 12
         } else {
-            return 14
+            return 12 // 14에서 12로 감소
         }
     }
     
@@ -116,7 +116,7 @@ struct ScrollableCalendarView: View {
         } else if geometry.size.width > 700 {
             return 40
         } else {
-            return 32
+            return 28 // 32에서 28로 감소
         }
     }
     
@@ -127,7 +127,7 @@ struct ScrollableCalendarView: View {
         } else if geometry.size.width > 700 {
             return 40
         } else {
-            return 24
+            return 20 // 24에서 20으로 감소
         }
     }
     
@@ -239,7 +239,7 @@ struct ScrollableCalendarDayView: View {
         } else if isWideScreen {
             return 50
         } else {
-            return 36
+            return 32 // 36에서 32로 감소
         }
     }
     
@@ -250,7 +250,7 @@ struct ScrollableCalendarDayView: View {
         } else if isWideScreen {
             return 20
         } else {
-            return 16
+            return 14 // 16에서 14로 감소
         }
     }
     

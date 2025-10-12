@@ -52,11 +52,12 @@ struct ArchiveView: View {
                     .padding(.horizontal, geometry.size.width > 700 ? 10 : 20)
                     .padding(.top, 60)
                     .padding(.bottom, geometry.size.width > 700 ? 10 : -30) // iPhone에서 캘린더를 더 위로
+                    .frame(maxHeight: geometry.size.width > 700 ? 500 : 350) // 캘린더 컨테이너 최대 높이 제한
                     
                     // 디바이더
                     Divider()
                         .padding(.horizontal, 20)
-                        .padding(.top, -20)
+                        .padding(.top, 20)
                     // 일기 목록 (스크롤)
                     ScrollView {
                         LazyVStack(spacing: 0) {
