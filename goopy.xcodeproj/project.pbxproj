@@ -13,12 +13,10 @@
 		C7A341A32E9AA2070033DA56 /* ClimateCrisisKR-1990.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */; };
 		C7A341A42E9AA2070033DA56 /* KoPubWorld Batang_Pro Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */; };
 		C7A341A52E9AA2070033DA56 /* neurimboGothicRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */; };
-		C7A341A62E9AA2070033DA56 /* Assets/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */; };
 		C7A341C22E9AA24D0033DA56 /* goopy.icon in Resources */ = {isa = PBXBuildFile; fileRef = C7A341C12E9AA24D0033DA56 /* goopy.icon */; };
 		C7CB85C12E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */; };
 		C7CB85C22E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */; };
 		C7CB85C32E9A8BF000AEBF87 /* neurimboGothicRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */; };
-		C7CB85C42E9A8BF000AEBF87 /* Assets/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +53,6 @@
 		C7CB85BD2E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClimateCrisisKR-1990.otf"; sourceTree = "<group>"; };
 		C7CB85BE2E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoPubWorld Batang_Pro Medium.otf"; sourceTree = "<group>"; };
 		C7CB85BF2E9A8BF000AEBF87 /* neurimboGothicRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neurimboGothicRegular.otf; sourceTree = "<group>"; };
-		C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -161,7 +158,6 @@
 		C7CB85BC2E9A8BF000AEBF87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C7CB85C02E9A8BF000AEBF87 /* Assets/Assets.xcassets */,
 				C7CB85C52E9A8BF000AEBF87 /* Fonts */,
 				C7A341C12E9AA24D0033DA56 /* goopy.icon */,
 			);
@@ -292,7 +288,6 @@
 				C7CB85C12E9A8BF000AEBF87 /* ClimateCrisisKR-1990.otf in Resources */,
 				C7CB85C22E9A8BF000AEBF87 /* KoPubWorld Batang_Pro Medium.otf in Resources */,
 				C7CB85C32E9A8BF000AEBF87 /* neurimboGothicRegular.otf in Resources */,
-				C7CB85C42E9A8BF000AEBF87 /* Assets/Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +299,6 @@
 				C7A341A42E9AA2070033DA56 /* KoPubWorld Batang_Pro Medium.otf in Resources */,
 				C7A341A52E9AA2070033DA56 /* neurimboGothicRegular.otf in Resources */,
 				C7A341C22E9AA24D0033DA56 /* goopy.icon in Resources */,
-				C7A341A62E9AA2070033DA56 /* Assets/Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
