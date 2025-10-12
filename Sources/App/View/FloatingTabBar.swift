@@ -62,7 +62,7 @@ struct FloatingTabBar: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
         .padding(.horizontal, 20)
-        .padding(.bottom, 60) // SafeArea 고려 + 20pt 위로
+        .padding(.bottom, 50) // SafeArea 고려 + 20pt 위로
         .scaleEffect(isPressed ? 0.95 : 1.0)
     }
 }

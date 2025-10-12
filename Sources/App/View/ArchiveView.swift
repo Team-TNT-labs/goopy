@@ -51,12 +51,12 @@ struct ArchiveView: View {
                     )
                     .padding(.horizontal, geometry.size.width > 700 ? 10 : 20)
                     .padding(.top, 60)
-                    // 디바이더
-                    Rectangle()
-                        .fill((isDarkMode ? Color.darkText : Color.lightText).opacity(0.2))
-                        .frame(height: 1)
-                        .padding(.horizontal, geometry.size.width > 700 ? 10 : 20)
+                    .padding(.bottom, geometry.size.width > 700 ? 10 : -30) // iPhone에서 캘린더를 더 위로
                     
+                    // 디바이더
+                    Divider()
+                        .padding(.horizontal, 20)
+                        .padding(.top, -20)
                     // 일기 목록 (스크롤)
                     ScrollView {
                         LazyVStack(spacing: 0) {
@@ -76,12 +76,12 @@ struct ArchiveView: View {
                                 }
                             }
                         }
-                        .padding(.top, 20)
+                        .padding(.top, geometry.size.width > 700 ? 10 : 10) // 디바이더와 일기 목록 사이 간격
                         .padding(.bottom, 120) // FloatingTabBar 공간 확보
                     }
+                    Spacer()
                 }
                 .background(isDarkMode ? Color.darkBackground : Color.lightBackground)
-                
                 // FloatingTabBar
                 VStack {
                     Spacer()

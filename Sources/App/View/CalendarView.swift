@@ -48,7 +48,7 @@ struct ScrollableCalendarView: View {
                                 Text(day)
                                     .font(.crisis(size: geometry.size.width > 700 ? 12 : 14))
                                     .foregroundColor(headerColor)
-                                    .frame(height: geometry.size.width > 700 ? 60 : 32)
+                                    .frame(height: geometry.size.width > 700 ? 40 : 32)
                             }
                             
                             // 날짜들
@@ -56,21 +56,22 @@ struct ScrollableCalendarView: View {
                                 if day == 0 {
                                     // 빈 칸
                                     Text("")
-                                        .frame(height: geometry.size.width > 700 ? 60 : 24)
+                                        .frame(height: geometry.size.width > 700 ?40 : 24)
                                 } else {
                                     ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode, onDateTap: onDateTap, isWideScreen: geometry.size.width > 700)
                                 }
                             }
                         }
                     }
-                    .padding(.vertical, geometry.size.width > 700 ? 20 : 16)
+                    .padding(.top, geometry.size.width > 700 ? 10 : 16)
+                    .padding(.bottom, geometry.size.width > 700 ? 30 : 20) // 하단 패딩 제거
                     .padding(.horizontal, geometry.size.width > 700 ? 10 : 14)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .tag(monthIndex)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(height: geometry.size.width > 700 ? 420 : 300) // 700 기준 캘린더 높이
+            .frame(height: geometry.size.width > 700 ? 450 : 300) // 700 기준 캘린더 높이
             .onChange(of: currentMonthIndex) { oldValue, newValue in
                 // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
                 if oldValue != newValue {
