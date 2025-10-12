@@ -38,15 +38,15 @@ struct DayPageView: View {
                     // Date display
                     VStack {
                         Text(DateUtils.formatMonth(date))
-                            .font(.crisis(size: 40))
+                            .font(.crisis(size: UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.width <= 375 ? 32 : 36))
                             .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                         
                         Text(DateUtils.formatDay(date))
-                            .font(.crisis(size: 170))
+                            .font(.crisis(size: UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.width <= 375 ? 120 : 150))
                             .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                         
                         Text(DateUtils.formatWeekday(date))
-                            .font(.crisis(size: 45))
+                            .font(.crisis(size: UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.width <= 375 ? 36 : 40))
                             .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                     }
                     .onTapGesture {
@@ -94,6 +94,7 @@ struct DayPageView: View {
         .onChange(of: date) { _, _ in
             loadEntry()
         }
+        .id(date) // 날짜별 고유 ID로 캐싱 최적화
     }
     
     private func loadEntry() {

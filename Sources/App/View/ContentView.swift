@@ -261,8 +261,8 @@ struct MainView: View {
     @Binding var isDarkMode: Bool
     @Environment(\.modelContext) private var modelContext
     
-    // 고정 범위 사용 (동적 확장 제거)
-    private let dayRange = -1000...1000 // 총 2000일 고정
+    // 성능 최적화를 위한 범위 축소
+    private let dayRange = -365...365 // 총 730일 (약 2년)
     
     var body: some View {
         TabView(selection: $currentDate) {
@@ -284,7 +284,7 @@ struct MainView: View {
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .animation(.easeInOut(duration: 0.2), value: currentDate) // 부드러운 애니메이션
+        .animation(.easeInOut(duration: 0.3), value: currentDate) // 더 부드러운 애니메이션
         .onChange(of: currentDate) { oldValue, newDate in
             guard oldValue != newDate else { return } // 중복 업데이트 방지
             onDateChange(newDate)

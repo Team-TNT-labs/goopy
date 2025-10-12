@@ -36,7 +36,7 @@ struct ScrollableCalendarView: View {
                     VStack(spacing: 8) {
                         // 월 표시
                         Text(formatMonth(month))
-                            .font(.crisis(size: geometry.size.width > 700 ? 28 : 24))
+                            .font(.crisis(size: getMonthFontSize(geometry: geometry)))
                             .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
                             .padding(.bottom, 8)
                         
@@ -46,9 +46,9 @@ struct ScrollableCalendarView: View {
                             ForEach(Array(["S", "M", "T", "W", "T", "F", "S"].enumerated()), id: \.offset) { index, day in
                                 let headerColor = (isDarkMode ? Color.darkText : Color.lightText).opacity(0.7)
                                 Text(day)
-                                    .font(.crisis(size: geometry.size.width > 700 ? 12 : 14))
+                                    .font(.crisis(size: getWeekdayHeaderFontSize(geometry: geometry)))
                                     .foregroundColor(headerColor)
-                                    .frame(height: geometry.size.width > 700 ? 40 : 32)
+                                    .frame(height: getWeekdayHeaderHeight(geometry: geometry))
                             }
                             
                             // 날짜들
@@ -56,7 +56,7 @@ struct ScrollableCalendarView: View {
                                 if day == 0 {
                                     // 빈 칸
                                     Text("")
-                                        .frame(height: geometry.size.width > 700 ?40 : 24)
+                                        .frame(height: getEmptyCellHeight(geometry: geometry))
                                 } else {
                                     ScrollableCalendarDayView(day: day, month: month, isDarkMode: isDarkMode, onDateTap: onDateTap, isWideScreen: geometry.size.width > 700)
                                 }
@@ -71,7 +71,7 @@ struct ScrollableCalendarView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(height: geometry.size.width > 700 ? 450 : 300) // 700 기준 캘린더 높이
+            .frame(height: getCalendarHeight(geometry: geometry)) // 캘린더 높이
             .onChange(of: currentMonthIndex) { oldValue, newValue in
                 // TabView의 기본 스와이프 제스처가 작동한 후 콜백 호출
                 if oldValue != newValue {
@@ -79,6 +79,66 @@ struct ScrollableCalendarView: View {
                     onMonthChanged?(newMonth)
                 }
             }
+        }
+    }
+    
+    // iPhone SE 감지 함수
+    private func isIPhoneSE() -> Bool {
+        return UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.width <= 375
+    }
+    
+    // 월 폰트 크기 계산
+    private func getMonthFontSize(geometry: GeometryProxy) -> CGFloat {
+        if isIPhoneSE() {
+            return 18
+        } else if geometry.size.width > 700 {
+            return 28
+        } else {
+            return 24
+        }
+    }
+    
+    // 요일 헤더 폰트 크기 계산
+    private func getWeekdayHeaderFontSize(geometry: GeometryProxy) -> CGFloat {
+        if isIPhoneSE() {
+            return 10
+        } else if geometry.size.width > 700 {
+            return 12
+        } else {
+            return 14
+        }
+    }
+    
+    // 요일 헤더 높이 계산
+    private func getWeekdayHeaderHeight(geometry: GeometryProxy) -> CGFloat {
+        if isIPhoneSE() {
+            return 24
+        } else if geometry.size.width > 700 {
+            return 40
+        } else {
+            return 32
+        }
+    }
+    
+    // 빈 셀 높이 계산
+    private func getEmptyCellHeight(geometry: GeometryProxy) -> CGFloat {
+        if isIPhoneSE() {
+            return 18
+        } else if geometry.size.width > 700 {
+            return 40
+        } else {
+            return 24
+        }
+    }
+    
+    // 캘린더 높이 계산
+    private func getCalendarHeight(geometry: GeometryProxy) -> CGFloat {
+        if isIPhoneSE() {
+            return 250
+        } else if geometry.size.width > 700 {
+            return 450
+        } else {
+            return 300
         }
     }
     
@@ -141,8 +201,8 @@ struct ScrollableCalendarDayView: View {
             (isDarkMode ? Color.darkText : Color.lightText) : 
             Color.clear
         
-        let daySize: CGFloat = isWideScreen ? 50 : 36
-        let fontSize: CGFloat = isWideScreen ? 20 : 16
+        let daySize: CGFloat = getDaySize(isWideScreen: isWideScreen)
+        let fontSize: CGFloat = getDayFontSize(isWideScreen: isWideScreen)
         
         Text("\(day)")
             .font(.crisis(size: fontSize))
@@ -152,10 +212,10 @@ struct ScrollableCalendarDayView: View {
                 Circle()
                     .fill(backgroundColor)
             )
-            .overlay(
-                Circle()
-                    .stroke(borderColor, lineWidth: isTodayDay ? (isWideScreen ? 3 : 2) : 0)
-            )
+                    .overlay(
+                        Circle()
+                            .stroke(borderColor, lineWidth: isTodayDay ? getBorderWidth(isWideScreen: isWideScreen) : 0)
+                    )
             .onTapGesture {
                 let calendar = Calendar.current
                 let year = calendar.component(.year, from: month)
@@ -165,6 +225,44 @@ struct ScrollableCalendarDayView: View {
                 let selectedDate = calendar.date(from: DateComponents(year: year, month: monthComponent, day: day)) ?? Date()
                 onDateTap?(selectedDate)
             }
+    }
+    
+    // iPhone SE 감지 함수
+    private func isIPhoneSE() -> Bool {
+        return UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.width <= 375
+    }
+    
+    // 날짜 셀 크기 계산
+    private func getDaySize(isWideScreen: Bool) -> CGFloat {
+        if isIPhoneSE() {
+            return 28
+        } else if isWideScreen {
+            return 50
+        } else {
+            return 36
+        }
+    }
+    
+    // 날짜 폰트 크기 계산
+    private func getDayFontSize(isWideScreen: Bool) -> CGFloat {
+        if isIPhoneSE() {
+            return 12
+        } else if isWideScreen {
+            return 20
+        } else {
+            return 16
+        }
+    }
+    
+    // 테두리 두께 계산
+    private func getBorderWidth(isWideScreen: Bool) -> CGFloat {
+        if isIPhoneSE() {
+            return 1
+        } else if isWideScreen {
+            return 3
+        } else {
+            return 2
+        }
     }
     
     // 오늘인지 확인
