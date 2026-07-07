@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (텍스트)";
 "widget_calendar_title" = "Goopy Diary (캘린더)";
 "widget_date_only_title" = "Goopy Diary (날짜만)";
+"widget_large_diary_title" = "Goopy Diary (크게)";
 
 /* Widget Descriptions */
 "widget_text_description" = "오늘의 일기를 텍스트로 확인하세요.";
 "widget_calendar_description" = "오늘의 일기와 캘린더를 확인하세요.";
 "widget_date_only_description" = "오늘 날짜를 확인하세요.";
+"widget_large_diary_description" = "아름다운 레이아웃의 큰 일기 위젯입니다.";
 
 /* ContentView */
 "today_thoughts_placeholder" = "오늘의 생각, 감정을 남겨주세요";

@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (Văn bản)";
 "widget_calendar_title" = "Goopy Diary (Lịch)";
 "widget_date_only_title" = "Goopy Diary (Chỉ Ngày)";
+"widget_large_diary_title" = "Goopy Diary (Lớn)";
 
 /* Widget Descriptions */
 "widget_text_description" = "Xem nhật ký hôm nay ở định dạng văn bản.";
 "widget_calendar_description" = "Xem nhật ký hôm nay và lịch.";
 "widget_date_only_description" = "Xem ngày hôm nay.";
+"widget_large_diary_description" = "Tiện ích nhật ký lớn với bố cục đẹp mắt.";
 
 /* ContentView */
 "today_thoughts_placeholder" = "Chia sẻ suy nghĩ và cảm xúc của bạn hôm nay";

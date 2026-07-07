@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (文本)";
 "widget_calendar_title" = "Goopy Diary (日历)";
 "widget_date_only_title" = "Goopy Diary (仅日期)";
+"widget_large_diary_title" = "Goopy Diary (大)";
 
 /* Widget Descriptions */
 "widget_text_description" = "以文本格式查看今天的日记。";
 "widget_calendar_description" = "查看今天的日记和日历。";
 "widget_date_only_description" = "查看今天的日期。";
+"widget_large_diary_description" = "布局精美的大号日记小组件。";
 
 /* ContentView */
 "today_thoughts_placeholder" = "请记录今天的想法和感受";

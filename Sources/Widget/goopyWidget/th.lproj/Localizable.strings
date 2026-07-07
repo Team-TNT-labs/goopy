@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (ข้อความ)";
 "widget_calendar_title" = "Goopy Diary (ปฏิทิน)";
 "widget_date_only_title" = "Goopy Diary (วันที่เท่านั้น)";
+"widget_large_diary_title" = "Goopy Diary (ใหญ่)";
 
 /* Widget Descriptions */
 "widget_text_description" = "ดูไดอารี่วันนี้ในรูปแบบข้อความ";
 "widget_calendar_description" = "ดูไดอารี่วันนี้และปฏิทิน";
 "widget_date_only_description" = "ดูวันที่วันนี้";
+"widget_large_diary_description" = "วิดเจ็ตไดอารี่ขนาดใหญ่พร้อมเลย์เอาต์ที่สวยงาม";
 
 /* ContentView */
 "today_thoughts_placeholder" = "แบ่งปันความคิดและความรู้สึกของวันนี้";

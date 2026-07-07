@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (نص)";
 "widget_calendar_title" = "Goopy Diary (تقويم)";
 "widget_date_only_title" = "Goopy Diary (التاريخ فقط)";
+"widget_large_diary_title" = "Goopy Diary (كبير)";
 
 /* Widget Descriptions */
 "widget_text_description" = "تحقق من مذكرات اليوم بتنسيق نصي.";
 "widget_calendar_description" = "تحقق من مذكرات اليوم والتقويم.";
 "widget_date_only_description" = "تحقق من تاريخ اليوم.";
+"widget_large_diary_description" = "أداة مذكرات كبيرة بتصميم جميل.";
 
 /* ContentView */
 "today_thoughts_placeholder" = "شارك أفكارك ومشاعرك لهذا اليوم";

@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (पाठ)";
 "widget_calendar_title" = "Goopy Diary (कैलेंडर)";
 "widget_date_only_title" = "Goopy Diary (केवल तारीख)";
+"widget_large_diary_title" = "Goopy Diary (बड़ा)";
 
 /* Widget Descriptions */
 "widget_text_description" = "आज की डायरी को पाठ प्रारूप में देखें।";
 "widget_calendar_description" = "आज की डायरी और कैलेंडर देखें।";
 "widget_date_only_description" = "आज की तारीख देखें।";
+"widget_large_diary_description" = "सुंदर लेआउट के साथ बड़ा डायरी विजेट।";
 
 /* ContentView */
 "today_thoughts_placeholder" = "आज के अपने विचार और भावनाएं साझा करें";

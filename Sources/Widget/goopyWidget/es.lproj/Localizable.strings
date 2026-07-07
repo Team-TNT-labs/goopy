@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (Texto)";
 "widget_calendar_title" = "Goopy Diary (Calendario)";
 "widget_date_only_title" = "Goopy Diary (Solo Fecha)";
+"widget_large_diary_title" = "Goopy Diary (Grande)";
 
 /* Widget Descriptions */
 "widget_text_description" = "Revisa el diario de hoy en formato de texto.";
 "widget_calendar_description" = "Revisa el diario de hoy y el calendario.";
 "widget_date_only_description" = "Revisa la fecha de hoy.";
+"widget_large_diary_description" = "Widget de diario grande con un diseño hermoso.";
 
 /* ContentView */
 "today_thoughts_placeholder" = "Comparte tus pensamientos y sentimientos de hoy";

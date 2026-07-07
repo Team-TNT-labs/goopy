@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (Текст)";
 "widget_calendar_title" = "Goopy Diary (Календарь)";
 "widget_date_only_title" = "Goopy Diary (Только Дата)";
+"widget_large_diary_title" = "Goopy Diary (Большой)";
 
 /* Widget Descriptions */
 "widget_text_description" = "Просмотрите сегодняшний дневник в текстовом формате.";
 "widget_calendar_description" = "Просмотрите сегодняшний дневник и календарь.";
 "widget_date_only_description" = "Просмотрите сегодняшнюю дату.";
+"widget_large_diary_description" = "Большой виджет дневника с красивым макетом.";
 
 /* ContentView */
 "today_thoughts_placeholder" = "Поделитесь своими мыслями и чувствами на сегодня";

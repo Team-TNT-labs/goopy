@@ -14,11 +14,13 @@
 "widget_text_title" = "Goopy Diary (テキスト)";
 "widget_calendar_title" = "Goopy Diary (カレンダー)";
 "widget_date_only_title" = "Goopy Diary (日付のみ)";
+"widget_large_diary_title" = "Goopy Diary (大)";
 
 /* Widget Descriptions */
 "widget_text_description" = "今日の日記をテキストで確認してください。";
 "widget_calendar_description" = "今日の日記とカレンダーを確認してください。";
 "widget_date_only_description" = "今日の日付を確認してください。";
+"widget_large_diary_description" = "美しいレイアウトの大きな日記ウィジェット。";
 
 /* ContentView */
 "today_thoughts_placeholder" = "今日の思いや感情を記録してください";
