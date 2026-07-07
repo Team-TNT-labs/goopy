@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import WidgetKit
+import UIKit
 
 struct InputView: View {
     @Environment(\.modelContext) private var modelContext
@@ -15,23 +16,29 @@ struct InputView: View {
     
     @State private var content: String = ""
     @State private var existingEntry: DailyEntry?
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var isTextFieldFocused: Bool = false
     @State private var isDarkMode: Bool = true
-    
+
     let date: Date
+
+    // TextEditor 폰트. PostScript명을 써서 확실히 KoPubWorld Batang(명조/serif)로 고정한다.
+    private static let editorFont: UIFont =
+        UIFont(name: "KoPubWorldBatangPM", size: 19) ?? UIFont.systemFont(ofSize: 19)
     
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 
                 // Text editor
-                TextEditor(text: $content)
-                    .font(.kpubWorld(size: 19))
-                    .foregroundColor(isDarkMode ? Color.darkText : Color.lightText)
-                    .background(Color.clear)
-                    .scrollContentBackground(.hidden)
-                    .padding(.horizontal, 24)
-                    .focused($isTextFieldFocused)
+                // 한글 IME 조합 중 serif가 유지되도록 UITextView 기반 에디터 사용
+                SerifTextEditor(
+                    text: $content,
+                    isFirstResponder: isTextFieldFocused,
+                    font: Self.editorFont,
+                    textColor: UIColor(isDarkMode ? Color.darkText : Color.lightText)
+                )
+                .background(Color.clear)
+                .padding(.horizontal, 24)
                 
                 Spacer()
             }
