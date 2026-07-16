@@ -2,15 +2,17 @@ import WidgetKit
 import SwiftUI
 
 // Custom Font Extension for Widget
+// 반드시 PostScript명을 사용할 것 — 풀네임("KoPubWorldBatang_Pro Medium")은
+// 매칭이 실패해 시스템 폰트로 폴백될 수 있다. (앱 타깃의 AppFont.swift와 동일하게 유지)
 extension Font {
     static func crisis(size: CGFloat) -> Font {
         return .custom("ClimateCrisisKR-1990", size: size)
     }
-    
+
     static func kpubWorld(size: CGFloat) -> Font {
-        return .custom("KoPubWorldBatang_Pro Medium", size: size)
+        return .custom("KoPubWorldBatangPM", size: size)
     }
-    
+
     static func neurimboGothic(size: CGFloat) -> Font {
         return .custom("neurimboGothicRegular", size: size)
     }

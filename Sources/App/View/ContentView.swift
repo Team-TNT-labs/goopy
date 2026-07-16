@@ -10,21 +10,6 @@ import SwiftData
 import WidgetKit
 import UIKit
 
-// 폰트 확장
-extension Font {
-    static func crisis(size: CGFloat) -> Font {
-        return Font.custom("ClimateCrisisKR-1990", size: size)
-    }
-    
-    static func kpubWorld(size: CGFloat) -> Font {
-        return Font.custom("KoPubWorldBatang_Pro Medium", size: size)
-    }
-    
-    static func neurimboGothic(size: CGFloat) -> Font {
-        return Font.custom("neurimboGothicRegular", size: size)
-    }
-}
-
 // 색상 확장
 extension Color {
     // 다크/라이트 모드 색상
@@ -32,7 +17,7 @@ extension Color {
     static let lightText = Color.black
     static let darkBackground = Color(red: 0.05, green: 0.05, blue: 0.05) // 더 어두운 색상
     static let darkText = Color(red: 0.65, green: 0.83, blue: 0.98) // A7D3F9
-    
+
     // 기존 색상 배열 (호환성을 위해 유지)
     static let pageColors: [Color] = [
         Color(red: 0.18, green: 0.21, blue: 0.22), // 기본 어두운 회색
@@ -52,48 +37,25 @@ enum ViewType {
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @State private var todayEntry: DailyEntry?
-    @State private var showingArchive = false
-    @State private var content: String = ""
+    // 저장 키는 기존과 동일. bool(forKey:) 미설정 기본값(false)과 맞춰 라이트 모드가 기본.
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @State private var currentView: ViewType = .main
     @State private var currentDate: Date = DateUtils.today()
-    @State private var refreshBackground = UUID()
-    @State private var isDarkMode: Bool = true // 다크 모드 기본값
-    @State private var selectedDate: Date? = nil // 아카이브에서 선택된 날짜
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
                 // Dynamic background based on dark/light mode
                 (isDarkMode ? Color.darkBackground : Color.lightBackground)
-                    .id(refreshBackground)
-                
+
                 VStack(spacing: 0) {
-                    
+
                     // Main content based on current view
                     if currentView == .main {
                         MainView(
-                            todayEntry: todayEntry,
-                            content: $content,
                             currentDate: $currentDate,
-                            onDateTap: { currentView = .archive },
                             onTodayTap: {
                                 currentDate = DateUtils.today()
-                                loadEntryForDate(DateUtils.today())
-                            },
-                            onDateChange: { newDate in
-                                currentDate = newDate
-                                loadEntryForDate(newDate)
-                            },
-                            onColorChange: {
-                                DispatchQueue.main.async {
-                                    self.refreshBackground = UUID()
-                                    self.loadTodayEntry()
-                                    self.updateWidgetData()
-                                }
-                            },
-                            onWidgetUpdate: {
-                                updateWidgetData()
                             },
                             onArchiveTap: {
                                 withAnimation(.none) {
@@ -106,18 +68,16 @@ struct ContentView: View {
                         )
                     } else {
                         ArchiveView(
-                            onDateTap: { 
+                            onDateTap: {
                                 withAnimation(.none) {
-                                    currentView = .main 
+                                    currentView = .main
                                 }
                             },
                             onDateSelect: { date in
-                                selectedDate = date
                                 currentDate = date
                                 withAnimation(.easeInOut(duration: 0.3)) {
                                     currentView = .main
                                 }
-                                loadEntryForDate(date)
                             },
                             onToggleDarkMode: { toggleDarkMode() },
                             onShare: { shareEntry() },
@@ -129,152 +89,108 @@ struct ContentView: View {
             .ignoresSafeArea(.all) // 전체 화면 색상 적용
             .navigationBarHidden(true)
             .onAppear {
-                // 저장된 다크모드 설정 불러오기
-                isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-                loadTodayEntry()
                 updateWidgetData()
             }
         }
         .preferredColorScheme(.dark)
     }
-    
+
     private func toggleDarkMode() {
         withAnimation(.easeInOut(duration: 0.3)) {
             isDarkMode.toggle()
         }
-        // persist toggle and refresh widget/background
-        UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
-        refreshBackground = UUID()
         updateWidgetData()
     }
 
     private func shareEntry() {
-        // 정사각형 공유 이미지 생성
-        if let shareImage = captureShareView() {
-            let dateString = DateUtils.formatDate(currentDate)
-            let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
-            
-            let activityVC = UIActivityViewController(
-                activityItems: [
-                    "\(dateString)\n\n\(text)",
-                    shareImage
-                ],
-                applicationActivities: nil
-            )
-            
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = scene.windows.first,
-               let root = window.rootViewController {
-                root.present(activityVC, animated: true)
-            }
-        } else {
-            // 이미지 생성 실패 시 기존 텍스트 공유
-            let text = todayEntry?.content ?? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
-            let dateString = DateUtils.formatDate(currentDate)
-            let activityVC = UIActivityViewController(
-                activityItems: ["\(dateString)\n\n\(text)"],
-                applicationActivities: nil
-            )
-            
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = scene.windows.first,
-               let root = window.rootViewController {
-                root.present(activityVC, animated: true)
-            }
+        // 공유 시점의 최신 데이터를 조회한다 (stale 캐시 금지)
+        let entryContent = fetchEntry(for: currentDate)?.content ?? ""
+        let shareText = entryContent.isEmpty
+            ? NSLocalizedString("today_thoughts_placeholder", comment: "Today's thoughts and feelings placeholder")
+            : entryContent
+        let dateString = DateUtils.formatDate(currentDate)
+
+        var activityItems: [Any] = ["\(dateString)\n\n\(shareText)"]
+        if let shareImage = captureShareView(content: entryContent) {
+            activityItems.append(shareImage)
+        }
+
+        let activityVC = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: nil
+        )
+
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first,
+           let root = window.rootViewController {
+            root.present(activityVC, animated: true)
         }
     }
-    
-    private func captureShareView() -> UIImage? {
+
+    private func captureShareView(content: String) -> UIImage? {
         // 공유용 정사각형 뷰 생성
         let shareView = ShareView(
             date: currentDate,
-            content: todayEntry?.content ?? "",
+            content: content,
             isDarkMode: isDarkMode
         )
-        
+
         // SwiftUI 뷰를 UIImage로 변환
         let renderer = ImageRenderer(content: shareView)
         renderer.scale = UIScreen.main.scale
-        
+
         // 정사각형 크기 설정
         let size = CGSize(width: 400, height: 400)
         renderer.proposedSize = .init(width: size.width, height: size.height)
-        
+
         return renderer.uiImage
     }
 
-    private func loadTodayEntry() {
-        loadEntryForDate(DateUtils.today())
-    }
-    
-    private func loadEntryForDate(_ date: Date) {
+    private func fetchEntry(for date: Date) -> DailyEntry? {
         let targetDate = DateUtils.stripToDay(date)
         let descriptor = FetchDescriptor<DailyEntry>(
             predicate: #Predicate<DailyEntry> { entry in
                 entry.date == targetDate
             }
         )
-        
+
         do {
-            let entries = try modelContext.fetch(descriptor)
-            todayEntry = entries.first
-            content = todayEntry?.content ?? ""
+            return try modelContext.fetch(descriptor).first
         } catch {
             print("Failed to fetch entry for date: \(error)")
+            return nil
         }
     }
-    
+
     private func updateWidgetData() {
-        // UserDefaults를 통해 위젯에 데이터 전달
-        guard let userDefaults = UserDefaults(suiteName: "group.com.goopy") else {
-            print("Failed to access App Group UserDefaults")
-            return
-        }
-        
-        let content = todayEntry?.content ?? ""
-        let colorIndex = max(0, min(6, todayEntry?.colorIndex ?? 0))
-        
-        userDefaults.set(content, forKey: "todayContent")
-        userDefaults.set(colorIndex, forKey: "todayColorIndex")
-        userDefaults.set(isDarkMode, forKey: "isDarkMode")
-        userDefaults.synchronize()
-        
-        print("Widget data updated: content='\(content)', colorIndex=\(colorIndex), isDarkMode=\(isDarkMode)")
-        
-        // 위젯 새로고침 요청
-        WidgetCenter.shared.reloadAllTimelines()
+        let todayEntry = fetchEntry(for: DateUtils.today())
+        WidgetDataStore.sync(
+            content: todayEntry?.content ?? "",
+            colorIndex: todayEntry?.colorIndex ?? 0,
+            isDarkMode: isDarkMode
+        )
     }
 }
 
 struct MainView: View {
-    let todayEntry: DailyEntry?
-    @Binding var content: String
     @Binding var currentDate: Date
-    let onDateTap: () -> Void
     let onTodayTap: () -> Void
-    let onDateChange: (Date) -> Void
-    let onColorChange: () -> Void
-    let onWidgetUpdate: () -> Void
     let onArchiveTap: () -> Void
     let onToggleDarkMode: () -> Void
     let onShare: () -> Void
     @Binding var isDarkMode: Bool
-    @Environment(\.modelContext) private var modelContext
-    
+
     // 성능 최적화를 위한 범위 축소
     private let dayRange = -365...365 // 총 730일 (약 2년)
-    
+
     var body: some View {
         TabView(selection: $currentDate) {
             ForEach(dayRange, id: \.self) { dayOffset in
                 let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: DateUtils.today()) ?? DateUtils.today()
-                
+
                 DayPageView(
                     date: date,
-                    onDateTap: onDateTap,
                     onTodayTap: onTodayTap,
-                    onColorChange: onColorChange,
-                    onWidgetUpdate: onWidgetUpdate,
                     onArchiveTap: onArchiveTap,
                     onToggleDarkMode: onToggleDarkMode,
                     onShare: onShare,
@@ -285,10 +201,6 @@ struct MainView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .animation(.easeInOut(duration: 0.3), value: currentDate) // 더 부드러운 애니메이션
-        .onChange(of: currentDate) { oldValue, newDate in
-            guard oldValue != newDate else { return } // 중복 업데이트 방지
-            onDateChange(newDate)
-        }
     }
 }
 
